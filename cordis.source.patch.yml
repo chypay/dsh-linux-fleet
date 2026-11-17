@@ -1,0 +1,16 @@
+# 零安装的 host-only 冒烟测试：直接引用本机 TypeScript 源码。
+# 注意：这种方式不会加载 ./client 半部，所以设置页不会出现；
+# 要测 Web UI，请改用 cordis.patch.yml + file: 安装方式。
+# 命令示例：dsh web --patch ./cordis.source.patch.yml
+- insert:
+    - id: dsh-linux-fleet
+      name: 'C:/Users/Funny/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet/src/index.ts'
+      config:
+        connectTimeout: 15000
+        commandTimeout: 30000
+        servers:
+          - name: local-test
+            host: 127.0.0.1
+            port: 22
+            user: root
+            privateKeyPath: 'C:/Users/Funny/.ssh/id_ed25519'

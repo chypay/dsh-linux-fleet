@@ -1,0 +1,58 @@
+{
+  "name": "dsh-linux-fleet",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness 多服务器远程 Linux 管理插件（Cordis + ssh2）",
+  "type": "module",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    },
+    "./client": "./lib/client.cjs"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web"
+    }
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "cordis.source.patch.yml",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "ssh2": "^1.17.0"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "^4.1.0",
+    "@deepseek-ai/dsh-tools": "^0.0.1-rc.1",
+    "@deepseek-ai/schemastery": "^3.19.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/ssh2": "^1.15.6",
+    "react": "^19.0.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "cordis",
+    "ssh",
+    "linux",
+    "sftp"
+  ]
+}
