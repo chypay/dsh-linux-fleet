@@ -34,7 +34,7 @@ dsh-linux-fleet/
 需要 Node.js ≥ 22、pnpm，以及一个已经能启动的 `dsh web`。
 
 ```bash
-cd C:/Users/Funny/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet
+cd C:/Users/用户名/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet
 npm install          # 或 pnpm install
 npm run build        # 产出 lib/index.js 与 lib/client.cjs
 npm test             # 构建 + 黑名单单元测试
@@ -51,14 +51,14 @@ DSH 的加载顺序是：bundle 层 → profile 的 `cordis.patch.yml` → `$DSH
 1. 把插件装进当前 profile 的依赖（路径换成你本机的实际路径）：
 
 ```bash
-cd "$DSH_HOME/profiles/web"          # 例如 C:/Users/Funny/.dsh/profiles/web
-pnpm add file:C:/Users/Funny/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet
+cd "$DSH_HOME/profiles/web"          # 例如 C:/Users/用户名/.dsh/profiles/web
+pnpm add file:C:/Users/用户名/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet
 ```
 
 2. 复制本项目的 `cordis.patch.yml` 到 profile 目录，或直接用命令行覆盖层启动：
 
 ```bash
-dsh web --patch C:/Users/Funny/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet/cordis.patch.yml
+dsh web --patch C:/Users/用户名/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet/cordis.patch.yml
 ```
 
 3. 验证加载：终端出现 `[dsh-linux-fleet] 已加载，N 台服务器…`；也可执行 `dsh web --dump-config` 确认配置树里已有 `dsh-linux-fleet` 这一行。
@@ -66,7 +66,7 @@ dsh web --patch C:/Users/Funny/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet/cor
 ### 方式 B：零安装冒烟测试（只测 Host 工具）
 
 ```bash
-dsh web --patch C:/Users/Funny/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet/cordis.source.patch.yml
+dsh web --patch C:/Users/用户名/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet/cordis.source.patch.yml
 ```
 
 该方式直接指向 `src/index.ts`，改动源码即可看到效果，但**不会**加载 `./client`，所以设置页不会出现。测完整功能请用方式 A。
@@ -163,3 +163,33 @@ client 半部通过 `ctx.slots.inject('settings.section', …)` 在 **设置 →
 - **路由 403**：`ctx.connection` 的信任校验拒绝了请求，检查是否从 DSH 页面同源发起。
 - **SSH 连接超时**：确认私钥无口令、路径是 DSH 进程所在机器的绝对路径、目标主机开放 22 端口；必要时调大 `connectTimeout`。
 - **输出 schema / 渲染差异**：本插件统一用 `{ type: 'string' }` 的 canonical value + `render` 文本块，这是各版本最稳定的形态；如需结构化输出，可按目标版本的 `ValueSchemaSpec` 把 `stringOutput()` 换成对象 schema。
+
+## 八、开源协议
+
+本项目采用 [MIT License](./LICENSE) 开源。
+
+```
+MIT License
+
+Copyright (c) 2026 chypay
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+你可以自由地使用、修改、分发本项目，包括商业用途，只需保留上述版权声明与许可声明。软件按「现状」提供，不附带任何明示或暗示的担保。

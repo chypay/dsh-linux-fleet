@@ -1,5 +1,5 @@
 # 推荐调试方式：先把本插件安装到 profile 的依赖里
-#   cd <DSH_HOME>/profiles/web && pnpm add file:C:/Users/Funny/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet
+#   cd <DSH_HOME>/profiles/web && pnpm add file:C:/Users/用户名/WorkBuddy/2026-11-17-09-19-04/dsh-linux-fleet
 # 再用：dsh web --patch ./cordis.patch.yml
 # 这样 host 半部与 client 半部（设置页）都能加载。
 - insert:
@@ -15,4 +15,4 @@
         #   host: 10.0.0.8
         #   port: 22
         #   user: root
-        #   privateKeyPath: C:/Users/Funny/.ssh/id_ed25519
+        #   privateKeyPath: C:/Users/用户名/.ssh/id_ed25519
